@@ -4,7 +4,7 @@
 #
 Name     : R-RcppParallel
 Version  : 4.4.4
-Release  : 1
+Release  : 2
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_4.4.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_4.4.4.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
@@ -12,11 +12,13 @@ Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0
 Requires: R-RcppParallel-lib = %{version}-%{release}
 BuildRequires : buildreq-R
+BuildRequires : tbb-dev
+Patch1: 0001-dlopen-system-tbb.patch
 
 %description
-See index.html for directions and documentation.
-If source is present (./Makefile and src/ directories),
-type 'gmake' in this directory to build and test.
+For example, the 'parallelFor()' function can be used to convert the work of
+    a standard serial "for" loop into a parallel one and the 'parallelReduce()'
+    function can be used for accumulating aggregate or other values.
 
 %package lib
 Summary: lib components for the R-RcppParallel package.
@@ -28,16 +30,17 @@ lib components for the R-RcppParallel package.
 
 %prep
 %setup -q -c -n RcppParallel
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583167687
+export SOURCE_DATE_EPOCH=1583192827
 
 %install
-export SOURCE_DATE_EPOCH=1583167687
+export SOURCE_DATE_EPOCH=1583192827
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -75,6 +78,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc RcppParallel || :
 
+## Remove excluded files
+rm -f %{buildroot}/usr/lib64/R/library/RcppParallel/lib/libtbb.so
+rm -f %{buildroot}/usr/lib64/R/library/RcppParallel/lib/libtbb.so.2
+rm -f %{buildroot}/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so
+rm -f %{buildroot}/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so.2
+rm -f %{buildroot}/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so
+rm -f %{buildroot}/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so.2
 
 %files
 %defattr(-,root,root,-)
@@ -240,10 +250,4 @@ R CMD check --no-manual --no-examples --no-codoc RcppParallel || :
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/R/library/RcppParallel/lib/libtbb.so
-/usr/lib64/R/library/RcppParallel/lib/libtbb.so.2
-/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so
-/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so.2
-/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so
-/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so.2
 /usr/lib64/R/library/RcppParallel/libs/RcppParallel.so
