@@ -4,7 +4,7 @@
 #
 Name     : R-RcppParallel
 Version  : 5.0.0
-Release  : 3
+Release  : 4
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.0.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.0.0.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
