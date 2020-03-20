@@ -4,21 +4,23 @@
 #
 Name     : R-RcppParallel
 Version  : 5.0.0
-Release  : 4
+Release  : 5
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.0.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.0.0.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0
 Requires: R-RcppParallel-lib = %{version}-%{release}
+Requires: tbb
 BuildRequires : buildreq-R
+BuildRequires : tbb
 BuildRequires : tbb-dev
 Patch1: 0001-dlopen-system-tbb.patch
 
 %description
-See index.html for directions and documentation.
-If source is present (./Makefile and src/ directories),
-type 'gmake' in this directory to build and test.
+For example, the 'parallelFor()' function can be used to convert the work of
+    a standard serial "for" loop into a parallel one and the 'parallelReduce()'
+    function can be used for accumulating aggregate or other values.
 
 %package lib
 Summary: lib components for the R-RcppParallel package.
@@ -37,10 +39,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583972692
+export SOURCE_DATE_EPOCH=1584746591
 
 %install
-export SOURCE_DATE_EPOCH=1583972692
+export SOURCE_DATE_EPOCH=1584746591
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
