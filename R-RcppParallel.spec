@@ -4,16 +4,14 @@
 #
 Name     : R-RcppParallel
 Version  : 5.0.1
-Release  : 7
+Release  : 8
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.0.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.0.1.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0
 Requires: R-RcppParallel-lib = %{version}-%{release}
-Requires: R-Rcpp
 Requires: tbb
-BuildRequires : R-Rcpp
 BuildRequires : buildreq-R
 BuildRequires : tbb
 BuildRequires : tbb-dev
@@ -42,10 +40,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1588774375
+export SOURCE_DATE_EPOCH=1589524925
 
 %install
-export SOURCE_DATE_EPOCH=1588774375
+export SOURCE_DATE_EPOCH=1589524925
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
