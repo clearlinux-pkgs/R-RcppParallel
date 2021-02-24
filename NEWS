@@ -1,3 +1,7 @@
+RcppParallel 5.0.3
+------------------------------------------------------------------------
+* Fixed compilation on macOS M1 machines.
+
 RcppParallel 5.0.2
 ------------------------------------------------------------------------
 * setThreadOptions(...) can now only be called once per session, to avoid
