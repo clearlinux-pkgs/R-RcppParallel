@@ -1,0 +1,21 @@
+--- a/RcppParallel/R/tbb.R~	2021-04-15 04:33:30.000000000 +0000
++++ b/RcppParallel/R/tbb.R	2021-12-29 17:22:42.998974765 +0000
+@@ -26,7 +26,7 @@
+       "Darwin"  = paste0("lib", name, ".dylib"),
+       "Windows" = paste0(       name, ".dll"),
+       "SunOS"   = paste0("lib", name, ".so"),
+-      "Linux"   = paste0("lib", name, c(".so.2", ".so"))
++      "Linux"   = paste0("lib", name, c(".so.12", ".so"))
+    )
+    
+    # skip systems that we know not to be compatible
+--- a/RcppParallel/src/Makevars.in~	2021-04-20 17:44:17.000000000 +0000
++++ b/RcppParallel/src/Makevars.in	2021-12-29 17:30:45.092968052 +0000
+@@ -1,6 +1,7 @@
+ 
+ PKG_CXXFLAGS = @CXX11STD@
+ 
++TBB_LIB=/usr/lib64/
+ # If TBB_ROOT is defined, use it.
+ ifdef TBB_ROOT
+ 
