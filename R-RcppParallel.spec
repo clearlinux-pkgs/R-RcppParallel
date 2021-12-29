@@ -4,13 +4,14 @@
 #
 Name     : R-RcppParallel
 Version  : 5.1.4
-Release  : 23
+Release  : 24
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.1.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.1.4.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0+
 Requires: R-RcppParallel-lib = %{version}-%{release}
+Requires: compat-tbb-soname2-lib
 Requires: tbb
 BuildRequires : buildreq-R
 BuildRequires : buildreq-distutils3
@@ -38,10 +39,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640706694
+export SOURCE_DATE_EPOCH=1640790995
 
 %install
-export SOURCE_DATE_EPOCH=1640706694
+export SOURCE_DATE_EPOCH=1640790995
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -257,3 +258,11 @@ R CMD check --no-manual --no-examples --no-codoc RcppParallel || :
 /usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so
 /usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so.2
 /usr/lib64/R/library/RcppParallel/libs/RcppParallel.so
+/usr/lib64/R/library/RcppParallel/libs/RcppParallel.so.avx2
+/usr/lib64/R/library/RcppParallel/libs/RcppParallel.so.avx512
+/usr/lib64/R/library/RcppParallel/libs/libtbb.so.avx2
+/usr/lib64/R/library/RcppParallel/libs/libtbb.so.avx512
+/usr/lib64/R/library/RcppParallel/libs/libtbbmalloc.so.avx2
+/usr/lib64/R/library/RcppParallel/libs/libtbbmalloc.so.avx512
+/usr/lib64/R/library/RcppParallel/libs/libtbbmalloc_proxy.so.avx2
+/usr/lib64/R/library/RcppParallel/libs/libtbbmalloc_proxy.so.avx512
