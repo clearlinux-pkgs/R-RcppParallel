@@ -4,7 +4,7 @@
 #
 Name     : R-RcppParallel
 Version  : 5.1.4
-Release  : 28
+Release  : 29
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.1.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.1.4.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
@@ -12,10 +12,12 @@ Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0+
 Requires: R-RcppParallel-lib = %{version}-%{release}
 Requires: tbb
+Requires: tbb-dev
 BuildRequires : buildreq-R
 BuildRequires : buildreq-distutils3
 BuildRequires : tbb-dev
 Patch1: build.patch
+Patch2: libs.patch
 
 %description
 For example, the 'parallelFor()' function can be used to convert the work of
@@ -34,16 +36,17 @@ lib components for the R-RcppParallel package.
 %setup -q -c -n RcppParallel
 cd %{_builddir}/RcppParallel
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640910139
+export SOURCE_DATE_EPOCH=1640964703
 
 %install
-export SOURCE_DATE_EPOCH=1640910139
+export SOURCE_DATE_EPOCH=1640964703
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
