@@ -1,0 +1,25 @@
+From 83f64890596ca9b79f42f8e564ec7377349f437a Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 29 Nov 2023 14:27:14 -0800
+Subject: [PATCH] Export libs
+
+---
+ R/tbb.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/R/tbb.R b/R/tbb.R
+index 0cd1c41..42c5781 100644
+--- a/R/tbb.R
++++ b/R/tbb.R
+@@ -90,7 +90,7 @@ tbbLdFlags <- function() {
+    }
+    
+    # nothing required on other platforms
+-   ""
++   return(" -ltbb -ltbbmalloc")
+    
+ }
+ 
+-- 
+2.43.0
+
