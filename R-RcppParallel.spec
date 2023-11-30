@@ -7,7 +7,7 @@
 #
 Name     : R-RcppParallel
 Version  : 5.1.7
-Release  : 44
+Release  : 45
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.1.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.1.7.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
@@ -56,10 +56,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701381176
+export SOURCE_DATE_EPOCH=1701388687
 
 %install
-export SOURCE_DATE_EPOCH=1701381176
+export SOURCE_DATE_EPOCH=1701388687
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/R-RcppParallel
 cp %{_builddir}/RcppParallel/src/tbb/COPYING %{buildroot}/usr/share/package-licenses/R-RcppParallel/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
