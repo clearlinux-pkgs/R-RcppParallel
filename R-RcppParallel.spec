@@ -7,7 +7,7 @@
 #
 Name     : R-RcppParallel
 Version  : 5.1.7
-Release  : 42
+Release  : 43
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.1.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.1.7.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
@@ -18,11 +18,9 @@ Requires: R-RcppParallel-license = %{version}-%{release}
 Requires: tbb
 Requires: tbb-dev
 BuildRequires : buildreq-R
-BuildRequires : tbb-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
-Patch1: 0001-Export-libs.patch
 
 %description
 For example, the 'parallelFor()' function can be used to convert the work of
@@ -48,7 +46,6 @@ license components for the R-RcppParallel package.
 
 %prep
 %setup -q -n RcppParallel
-%patch -P 1 -p1
 pushd ..
 cp -a RcppParallel buildavx2
 popd
@@ -58,10 +55,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701297014
+export SOURCE_DATE_EPOCH=1701370693
 
 %install
-export SOURCE_DATE_EPOCH=1701297014
+export SOURCE_DATE_EPOCH=1701370693
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/R-RcppParallel
 cp %{_builddir}/RcppParallel/src/tbb/COPYING %{buildroot}/usr/share/package-licenses/R-RcppParallel/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
@@ -102,13 +99,6 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc . || :
 
-## Remove excluded files
-rm -f %{buildroot}*/usr/lib64/R/library/RcppParallel/lib/libtbb.so
-rm -f %{buildroot}*/usr/lib64/R/library/RcppParallel/lib/libtbb.so.2
-rm -f %{buildroot}*/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so
-rm -f %{buildroot}*/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so.2
-rm -f %{buildroot}*/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so
-rm -f %{buildroot}*/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so.2
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
@@ -282,6 +272,12 @@ rm -f %{buildroot}*/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so.2
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/R/library/RcppParallel/lib/libtbb.so
+/usr/lib64/R/library/RcppParallel/lib/libtbb.so.2
+/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so
+/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc.so.2
+/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so
+/usr/lib64/R/library/RcppParallel/lib/libtbbmalloc_proxy.so.2
 /usr/lib64/R/library/RcppParallel/libs/RcppParallel.so
 /usr/lib64/R/library/RcppParallel/libs/RcppParallel.so.avx2
 /usr/lib64/R/library/RcppParallel/libs/RcppParallel.so.avx512
