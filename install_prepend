@@ -1,0 +1,2 @@
+export TBB_INC=/usr/include/tbb
+export TBB_LIB=/usr/lib64
