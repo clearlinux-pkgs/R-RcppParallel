@@ -7,7 +7,7 @@
 #
 Name     : R-RcppParallel
 Version  : 5.1.9
-Release  : 49
+Release  : 50
 URL      : https://cran.r-project.org/src/contrib/RcppParallel_5.1.9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RcppParallel_5.1.9.tar.gz
 Summary  : Parallel Programming Tools for 'Rcpp'
