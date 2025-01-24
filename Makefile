@@ -1,5 +1,5 @@
 PKG_NAME := R-RcppParallel
-URL = https://cran.r-project.org/src/contrib/RcppParallel_5.1.9.tar.gz
+URL = https://ftp.osuosl.org/pub/cran/src/contrib/RcppParallel_5.1.10.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
